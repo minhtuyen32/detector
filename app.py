@@ -62,7 +62,7 @@ if not os.path.exists(model_weights_path):
     print("Download complete!")
 
 model = CNN_NeuralNet(3, len(class_names))
-model.load_state_dict(torch.load("model_weights.pt"))
+model.load_state_dict(torch.load("model_weights.pth"))
 model.to(device)
 model.eval()
 
