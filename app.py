@@ -60,7 +60,7 @@ if not os.path.exists(model_weights_path):
     gdown.download(url, model_weights_path, quiet=False)
     print("Download complete!")
 model = CNN_NeuralNet(3, len(class_names))
-model.load_state_dict(torch.load("model_weights.pth", weights_only=False))
+model.load_state_dict(torch.load("model_weights.pth", map_location=torch.device('cpu')))
 model.to(device)
 model.eval()
 
