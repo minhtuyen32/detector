@@ -4,3 +4,4 @@ torchvision==0.21.0
 Pillow==11.2.1
 flask-cors==5.0.1
 requests
+gdown
