@@ -7,6 +7,7 @@ import json
 import os
 from flask_cors import CORS
 import requests
+import gdown
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
@@ -56,15 +57,13 @@ model_weights_path = 'model_weights.pth'
 if not os.path.exists(model_weights_path):
     print("Downloading model...")
     url = "https://drive.google.com/uc?id=1wIlAJey8USsD_da4nG65WHmlpMo3izut"
-    response = requests.get(url)
-    with open(model_weights_path, 'wb') as f:
-        f.write(response.content)
+    gdown.download(url, model_weights_path, quiet=False)
     print("Download complete!")
-
 model = CNN_NeuralNet(3, len(class_names))
 model.load_state_dict(torch.load("model_weights.pth", weights_only=False))
 model.to(device)
 model.eval()
+
 
 transform = transforms.Compose([
     transforms.Resize((256, 256)),
